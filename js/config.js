@@ -33,7 +33,26 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
               },
             ]);
           },
-        }
+        },
+      })
+      .state("activitymap", {
+        abstract: true,
+        url: "/activitymap",
+        templateUrl: "views/common/content.html",
+        resolve: {
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                insertBefore: "#loadBefore",
+                name: "toaster",
+                files: [
+                  "js/plugins/toastr/toastr.min.js",
+                  "css/plugins/toastr/toastr.min.css",
+                ],
+              },
+            ]);
+          },
+        },
       })
       .state("index.main", {
         url: "/main",
@@ -44,6 +63,17 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
         url: "/minor",
         templateUrl: "views/minor.html",
         data: { pageTitle: "Example view" },
+      })
+      .state("activitymap.activity", {
+        url: "/activity",
+        templateUrl: "views/activity.html",
+        data: { pageTitle: "Activities on the field" },
+      })
+      .state("activitymap.details", {
+        url: "/details",
+        templateUrl: "views/common/activity_details.html",
+        //controller : "MapCrtl", 
+        data: { pageTitle: "Activity :: Details" },
       })
       .state("index.map", {
         url: "/map",

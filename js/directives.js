@@ -150,7 +150,64 @@ function minimalizaSidebar($timeout) {
     };
 }
 
+/**
+ * fullScroll - Directive for slimScroll with 100%
+ */
+function fullScroll($timeout){
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+            $timeout(function(){
+                element.slimscroll({
+                    height: '100%',
+                    railOpacity: 0.9
+                });
 
+            });
+        }
+    };
+}
+
+/**
+ * slimScroll - Directive for slimScroll with custom height
+ */
+function slimScroll($timeout){
+    return {
+        restrict: 'A',
+        scope: {
+            boxHeight: '@'
+        },
+        link: function(scope, element) {
+            $timeout(function(){
+                element.slimscroll({
+                    height: scope.boxHeight,
+                    railOpacity: 0.9
+                });
+
+            });
+        }
+    };
+}
+
+
+/**
+ *  Leaflet Popup message
+ */
+function leafletPopupContent(){
+    return {
+        restrict : "C",
+        scope : {
+            message:'@'
+        }, 
+        template : `<div class="card" style="width: 100%;">
+                    <img class="card-img-top" src="./img/dummy.jpg" width=200px height=auto alt="Activity image caption">
+                    <h5 class="card-title">{{message}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">***SurTitre***</h6>
+                    
+                    </div>` 
+        };
+    }
+    
 /**
  *
  * Pass all functions into module
@@ -161,4 +218,8 @@ angular
   .directive("sideNavigation", sideNavigation)
   .directive("iboxTools", iboxTools)
   .directive("minimalizaSidebar", minimalizaSidebar)
-  .directive("iboxToolsFullScreen", iboxToolsFullScreen);
+  .directive("iboxToolsFullScreen", iboxToolsFullScreen)
+  .directive("fullScroll", fullScroll)
+  .directive("slimScroll", slimScroll)
+  .directive("leafletPopupContent", leafletPopupContent);
+

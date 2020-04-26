@@ -6,12 +6,41 @@
 /**
  * MainCtrl - controller
  */
-function MainCtrl() {
+function MainCtrl($scope, $rootScope) {
+  this.userName = "Example user";
+  this.helloText = "Welcome in SeedProject";
+  this.descriptionText =
+    "It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.";
+ this.currentActivity = {};
+  $scope.mainData = {
+    logs: "",
+  };
 
-    this.userName = 'Example user';
-    this.helloText = 'Welcome in SeedProject';
-    this.descriptionText = 'It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.';
+  $scope.$on("eventSidebareUpdate", function (event, data) {
+      var vm = this; 
+      vm.currentActivity = data.model;
+    $scope.mainData.logs =
+      $scope.mainData.logs +
+      '\nMainController - receive EVENT "' +
+      event.name +
+      '" with message = "' +
+      data.message +
+      '"';
+  });
 
+  $rootScope.$on("eventSidebareUpdate", function (event, data) {
+    console.debug($rootScope.rightSidebar);
+    if ($rootScope.rightSidebar === "undefined") {
+      $rootScope.rightSidebar = !$rootScope.rightSidebar;
+    }
+    $scope.mainData.logs =
+      $scope.mainData.logs +
+      '\n$rootScope - receive EVENT "' +
+      event.name +
+      '" with message = "' +
+      data.message +
+      '"';
+  });
 };
 
 

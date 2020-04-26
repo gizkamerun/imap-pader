@@ -8,9 +8,9 @@
  */
 function MapCtrl($scope, leafletMarkerEvents, toaster, $log) {
   this.userName = "Example user";
-  this.helloText = "Welcome in SeedProject";
+  this.helloText = "Welcome to the GIZ/PADER Map Service";
   this.descriptionText =
-    "It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.";
+    "Please find on the map the activities of the GIZ Cluster Rural Development Project: PADER";
 
   $scope.center = {
     lat: 3.868987,
@@ -25,21 +25,21 @@ function MapCtrl($scope, leafletMarkerEvents, toaster, $log) {
       lat: 3.868987,
       lng: 11.521334,
       draggable: false,
-      message: "PADER Activity #1",
+      message: "Activity #1",
       focus: true,
     },
     dla: {
       lat: 4.042941,
       lng: 9.706203,
       draggable: false,
-      message: "PADER Activity #2",
+      message: "Activity Title #2",
       focus: false,
     },
     ber: {
       lat: 4.577727,
       lng: 13.684441,
       draggable: false,
-      message: "PADER Activity #3",
+      message: "Activity Title #3",
       focus: false,
     },
     gar: {
@@ -57,23 +57,27 @@ function MapCtrl($scope, leafletMarkerEvents, toaster, $log) {
     },
   };
 
-  // Toaster 
-   $scope.demoToastr = function (title = "", msg = "") {
-     toaster.pop({
-       type: "info",
-       title: title,
-       body: "notification box:" + msg,
-       showCloseButton: true,
-       timeout: 3000,
-     });
-   };
+  // Toaster
+  $scope.demoToastr = function (title = "", msg = "") {
+    toaster.pop({
+      type: "info",
+      title: title,
+      body: "notification box:" + msg,
+      showCloseButton: true,
+      timeout: 3000,
+    });
+  };
+
+  $scope.sidebarDetailsOpen = function (event, args) {
+    $scope.$emit("eventSidebareUpdate", $scope.lastEvent);
+  };
 
   $scope.eventDetected = "No events yet...";
   var markerEvents = leafletMarkerEvents.getAvailableEvents();
   for (var k in markerEvents) {
     var eventName = "leafletDirectiveMarker." + markerEvents[k];
     var vm = this;
-   
+
     $scope.$on(eventName, function (event, args) {
       $scope.eventDetected = event.name;
       $scope.lastEvent = vm.lastEvent = event;
@@ -82,6 +86,7 @@ function MapCtrl($scope, leafletMarkerEvents, toaster, $log) {
         vm.currentActivity = args.model;
         $log.debug(args.model);
         $scope.demoToastr(args.model.message, event.name);
+        $scope.sidebarDetailsOpen(event, args);
       }
     });
   }

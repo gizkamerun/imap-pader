@@ -7,7 +7,7 @@
  *
  */
 function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
-    $urlRouterProvider.otherwise("/index/main");
+    $urlRouterProvider.otherwise("/index/map");
 
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
@@ -35,6 +35,16 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
         url: "/map",
         templateUrl: "views/map.html",
         data: { pageTitle: "Carte PADER" },
+      })
+      .state("index.aboutapp", {
+        url: "/aboutapp",
+        templateUrl: "views/aboutapp.html",
+        data: { pageTitle: "A Propos" },
+      })
+      .state("index.aboutgizpader", {
+        url: "/aboutgizpader",
+        templateUrl: "views/aboutgizpader.html",
+        data: { pageTitle: "GIZ/PADER" },
       })
       .state("index.legal", {
         url: "/legal",

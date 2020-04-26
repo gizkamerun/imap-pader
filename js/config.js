@@ -20,6 +20,20 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
         abstract: true,
         url: "/index",
         templateUrl: "views/common/content.html",
+        resolve: {
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                insertBefore: "#loadBefore",
+                name: "toaster",
+                files: [
+                  "js/plugins/toastr/toastr.min.js",
+                  "css/plugins/toastr/toastr.min.css",
+                ],
+              },
+            ]);
+          },
+        }
       })
       .state("index.main", {
         url: "/main",

@@ -6,7 +6,7 @@
 /**
  * MainCtrl - controller
  */
-function MapCtrl($scope, leafletMarkerEvents) {
+function MapCtrl($scope, leafletMarkerEvents, toaster) {
   this.userName = "Example user";
   this.helloText = "Welcome in SeedProject";
   this.descriptionText =
@@ -19,7 +19,7 @@ function MapCtrl($scope, leafletMarkerEvents) {
   };
 
   $scope.lastEvent = this.lastEvent = {};
-  
+
   $scope.markers = {
     yde: {
       lat: 3.868987,
@@ -57,19 +57,30 @@ function MapCtrl($scope, leafletMarkerEvents) {
     },
   };
 
+  // Toaster 
+   $scope.demoToastr = function (msg = "") {
+     toaster.pop({
+       type: "error",
+       title: "Notice",
+       body: "notification box:" + msg,
+       showCloseButton: true,
+       timeout: 1200,
+     });
+   };
+
   $scope.eventDetected = "No events yet...";
   var markerEvents = leafletMarkerEvents.getAvailableEvents();
   for (var k in markerEvents) {
     var eventName = "leafletDirectiveMarker." + markerEvents[k];
     var vm = this;
+   
     $scope.$on(eventName, function (event, args) {
       $scope.eventDetected = event.name;
-        $scope.lastEvent = vm.lastEvent = event; 
-        if (event.name === "leafletDirectiveMarker.click") {
-          console.info("Last CLICK Event", $scope.lastEvent);
-        }
-       
-
+      $scope.lastEvent = vm.lastEvent = event;
+      if (event.name === "leafletDirectiveMarker.click") {
+        console.info("Last CLICK Event", $scope.lastEvent);
+        $scope.demoToastr(event.name);
+      }
     });
   }
 }

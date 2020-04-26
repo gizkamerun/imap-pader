@@ -5,7 +5,7 @@
 -->
 
 <!DOCTYPE html>
-<html ng-app="inspinia">
+<html ng-app="imap">
 
 <head>
 
@@ -24,6 +24,7 @@
 
     <!-- Main Inspinia CSS files -->
     <link href="css/animate.css" rel="stylesheet">
+    <link href="css/leaflet.css" rel="stylesheet">
     <link id="loadBefore" href="css/style.css" rel="stylesheet">
 
 
@@ -59,12 +60,17 @@
 <script src="js/ui-router/angular-ui-router.min.js"></script>
 <script src="js/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
 
+<script src="js/plugins/leaflet/leaflet.js"></script>
+<script src="js/plugins/leaflet/angular-simple-logger.js"></script>
+<script src="js/plugins/leaflet/ui-leaflet_dev_mapped.js"></script>
+
 
 <!-- Anglar App Script -->
 <script src="js/app.js"></script>
 <script src="js/config.js"></script>
 <script src="js/directives.js"></script>
 <script src="js/controllers.js"></script>
+<script src="js/component.map.js"></script>
 
 </body>
 </html>

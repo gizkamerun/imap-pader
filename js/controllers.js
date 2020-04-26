@@ -15,6 +15,5 @@ function MainCtrl() {
 };
 
 
-angular
-    .module('inspinia')
-    .controller('MainCtrl', MainCtrl)
+angular.module("imap")
+    .controller("MainCtrl", MainCtrl);

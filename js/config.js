@@ -16,24 +16,34 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 
     $stateProvider
 
-        .state('index', {
-            abstract: true,
-            url: "/index",
-            templateUrl: "views/common/content.html",
-        })
-        .state('index.main', {
-            url: "/main",
-            templateUrl: "views/main.html",
-            data: { pageTitle: 'Example view' }
-        })
-        .state('index.minor', {
-            url: "/minor",
-            templateUrl: "views/minor.html",
-            data: { pageTitle: 'Example view' }
-        })
+      .state("index", {
+        abstract: true,
+        url: "/index",
+        templateUrl: "views/common/content.html",
+      })
+      .state("index.main", {
+        url: "/main",
+        templateUrl: "views/main.html",
+        data: { pageTitle: "Example view" },
+      })
+      .state("index.minor", {
+        url: "/minor",
+        templateUrl: "views/minor.html",
+        data: { pageTitle: "Example view" },
+      })
+      .state("index.map", {
+        url: "/map",
+        templateUrl: "views/map.html",
+        data: { pageTitle: "Carte PADER" },
+      })
+      .state("index.legal", {
+        url: "/legal",
+        templateUrl: "views/legal.html",
+        data: { pageTitle: "Mentions legales" },
+      });
 }
 angular
-    .module('inspinia')
+    .module('imap')
     .config(config)
     .run(function($rootScope, $state) {
         $rootScope.$state = $state;

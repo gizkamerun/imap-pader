@@ -3,10 +3,11 @@
  *
  */
 (function () {
-    angular.module('inspinia', [
-        'ui.router',                    // Routing
-        'oc.lazyLoad',                  // ocLazyLoad
-        'ui.bootstrap',                 // Ui Bootstrap
-    ])
+    angular.module("imap", [
+      "ui.router", // Routing
+      "oc.lazyLoad", // ocLazyLoad
+      "ui.bootstrap", // Ui Bootstrap
+      "ui-leaflet",   // leaftlet Lib
+    ]);
 })();
 

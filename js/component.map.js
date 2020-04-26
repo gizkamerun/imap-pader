@@ -6,7 +6,7 @@
 /**
  * MainCtrl - controller
  */
-function MapCtrl($scope, leafletMarkerEvents, toaster) {
+function MapCtrl($scope, leafletMarkerEvents, toaster, $log) {
   this.userName = "Example user";
   this.helloText = "Welcome in SeedProject";
   this.descriptionText =
@@ -58,13 +58,13 @@ function MapCtrl($scope, leafletMarkerEvents, toaster) {
   };
 
   // Toaster 
-   $scope.demoToastr = function (msg = "") {
+   $scope.demoToastr = function (title = "", msg = "") {
      toaster.pop({
-       type: "error",
-       title: "Notice",
+       type: "info",
+       title: title,
        body: "notification box:" + msg,
        showCloseButton: true,
-       timeout: 1200,
+       timeout: 3000,
      });
    };
 
@@ -79,7 +79,9 @@ function MapCtrl($scope, leafletMarkerEvents, toaster) {
       $scope.lastEvent = vm.lastEvent = event;
       if (event.name === "leafletDirectiveMarker.click") {
         console.info("Last CLICK Event", $scope.lastEvent);
-        $scope.demoToastr(event.name);
+        vm.currentActivity = args.model;
+        $log.debug(args.model);
+        $scope.demoToastr(args.model.message, event.name);
       }
     });
   }

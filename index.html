@@ -46,6 +46,10 @@
             opacity: .75;
             background-color: rgb(137,174,16); /*137,174,16 ::: 191, 213, 136*/ 
         }
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+        }
     
     </style>
 
@@ -57,7 +61,7 @@
 <body ng-controller="MainCtrl as main">
 
 <!-- Main view  -->
-<div ui-view></div>
+<div ui-view ng-cloak></div>
 
 <!-- jQuery and Bootstrap -->
 <script src="js/jquery/jquery-2.1.1.min.js"></script>

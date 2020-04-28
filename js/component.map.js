@@ -35,9 +35,9 @@ function MapCtrl(
     };
 
   $scope.center = {
-    lat: 3.868987,
+    lat: 5.868987,
     lng: 11.521334,
-    zoom: 8,
+    zoom: 7,
   };
 
   $scope.lastEvent = this.lastEvent = {};
@@ -279,7 +279,7 @@ function onEachFeature(feature, layer) {
 
   if (~excludeRegions.indexOf(layer.feature.properties.nom_reg)) {
     // Set Fill color to none
-    layer.setStyle({ fillColor: "none" });
+    layer.setStyle({ fillColor: "white", fillOpacity: 0.7 });
     //console.info(layer.feature.properties.nom_reg + '--' + "Color:none");
   }else if (RegionsSet1[0] === layer.feature.properties.nom_reg) {
     // Set Fill color to none
@@ -322,7 +322,7 @@ function onEachFeature(feature, layer) {
     },
     mouseout: function (e, arg) {
       //arg.layer.options.style.fillColor = "red";
-      currentlayer.resetStyle(layer);
+      //currentlayer.resetStyle(layer);
     },
   });
 }

@@ -28,9 +28,9 @@ function MapCtrl(
       },
       red: {
         type: "div",
-        iconSize: [10, 10],
+        iconSize: [30, 30],
         className: "red",
-        iconAnchor: [5, 5],
+        iconAnchor: [15, 15],
       },
     };
 

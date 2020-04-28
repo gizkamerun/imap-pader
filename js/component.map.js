@@ -280,23 +280,23 @@ function onEachFeature(feature, layer) {
   if (~excludeRegions.indexOf(layer.feature.properties.nom_reg)) {
     // Set Fill color to none
     layer.setStyle({ fillColor: "none" });
-    console.info(layer.feature.properties.nom_reg + '--' + "Color:none");
+    //console.info(layer.feature.properties.nom_reg + '--' + "Color:none");
   }else if (RegionsSet1[0] === layer.feature.properties.nom_reg) {
     // Set Fill color to none
     layer.setStyle({ fillColor: "yellow" });
-    console.info(layer.feature.properties.nom_reg + "--" + "Color:yellow");
+    // console.info(layer.feature.properties.nom_reg + "--" + "Color:yellow");
   }else if (RegionsSet2[0] === layer.feature.properties.nom_reg) {
     // Set Fill color to none
     layer.setStyle({ fillColor: "teal" });
-    console.info(layer.feature.properties.nom_reg + "--" + "Color:teal");
+    // console.info(layer.feature.properties.nom_reg + "--" + "Color:teal");
   }else if (RegionsSet3[0] ===layer.feature.properties.nom_reg ) {
     // Set Fill color to none
     layer.setStyle({ fillColor: "red" });
-    console.info(layer.feature.properties.nom_reg + "--" + "Color:red");
+    // console.info(layer.feature.properties.nom_reg + "--" + "Color:red");
   }else if (RegionsSet4.indexOf(layer.feature.properties.nom_reg > -1)) {
           // Set Fill color to none
           layer.setStyle({ fillColor: "blue" });
-          console.info(layer.feature.properties.nom_reg + "--" + "Color:blue");
+          // console.info(layer.feature.properties.nom_reg + "--" + "Color:blue");
         }
 
   //layer.options.fillColor = "red";
@@ -316,7 +316,7 @@ function onEachFeature(feature, layer) {
     click: function (e, arg) {
       console.log(layer.feature.properties.nom_reg);
       //$scope.region = layer.feature.properties.nom_reg;
-      console.log("layer_test", e);
+      // console.log("layer_test", e);
       //arg.layer.options.style.fillColor = "red";
       //layer.setStyle({ fillColor: "red" });
     },

@@ -26,15 +26,15 @@ function MapCtrl(
   var icons = {
     green: {
       type: "div",
-      iconSize: [30, 30],
+      iconSize: [20, 20],
       className: "green",
-      iconAnchor: [15, 15],
+      iconAnchor: [10, 10],
     },
     red: {
       type: "div",
-      iconSize: [30, 30],
+      iconSize: [20, 20],
       className: "red",
-      iconAnchor: [15, 15],
+      iconAnchor: [10, 10],
     },
   };
 

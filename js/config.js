@@ -72,13 +72,23 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
       .state("activitymap.details", {
         url: "/details",
         templateUrl: "views/common/activity_details.html",
-        //controller : "MapCrtl", 
+        //controller : "MapCrtl",
         data: { pageTitle: "Activity :: Details" },
       })
       .state("index.map", {
         url: "/map",
         templateUrl: "views/map.html",
         data: { pageTitle: "Carte PADER" },
+      })
+      .state("index.regactivity", {
+        url: "/regactivity",
+        templateUrl: "views/regactivity.html",
+        data: { pageTitle: "A Propos" },
+      })
+      .state("index.valuechain", {
+        url: "/valuechain",
+        templateUrl: "views/valuechain.html",
+        data: { pageTitle: "A Propos" },
       })
       .state("index.aboutapp", {
         url: "/aboutapp",

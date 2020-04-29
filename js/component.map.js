@@ -12,27 +12,31 @@ function MapCtrl(
   toaster,
   $log,
   $http,
-  leafletLogger
+  leafletLogger,
+  
 ) {
-  this.userName = "Example user";
-  this.helloText = "Welcome to the GIZ/PADER Map Service";
+  this.userName = "User";
+  this.helloText =
+    "Zones d'interventions et Antennes du Cluster  Développement rural";
   this.descriptionText =
-    "Please find on the map the activities of the GIZ Cluster Rural Development Project: PADER";
+    "Please find on the map the activities of the GIZ Cluster Rural Development in Cameroon";
+  this.currentlocation = {};
+  var vm = this;
 
-    var icons = {
-      green: {
-        type: "div",
-        iconSize: [30, 30],
-        className: "green",
-        iconAnchor: [15, 15],
-      },
-      red: {
-        type: "div",
-        iconSize: [30, 30],
-        className: "red",
-        iconAnchor: [15, 15],
-      },
-    };
+  var icons = {
+    green: {
+      type: "div",
+      iconSize: [30, 30],
+      className: "green",
+      iconAnchor: [15, 15],
+    },
+    red: {
+      type: "div",
+      iconSize: [30, 30],
+      className: "red",
+      iconAnchor: [15, 15],
+    },
+  };
 
   $scope.center = {
     lat: 5.868987,
@@ -106,7 +110,6 @@ function MapCtrl(
   var markerEvents = leafletMarkerEvents.getAvailableEvents();
   for (var k in markerEvents) {
     var eventName = "leafletDirectiveMarker." + markerEvents[k];
-    var vm = this;
 
     $scope.$on(eventName, function (event, args) {
       $scope.eventDetected = event.name;
@@ -114,6 +117,7 @@ function MapCtrl(
       if (event.name === "leafletDirectiveMarker.click") {
         console.info("Last CLICK Event", $scope.lastEvent);
         vm.currentActivity = args.model;
+        vm.currentlocation = args.model;
         $log.debug(args.model);
         $scope.demoToastr(args.model.message, event.name);
         $scope.sidebarDetailsOpen(event, args);
@@ -166,7 +170,7 @@ function MapCtrl(
         coordination: {
           type: "group",
           name: "Coordination",
-          visible: true
+          visible: true,
         },
       },
     },
@@ -201,7 +205,6 @@ function MapCtrl(
           },
           onEachFeature: onEachFeature,
 
-
           events: {
             // or just {} //all events
             // markers: {
@@ -229,6 +232,10 @@ function MapCtrl(
   $scope.$on("leafletDirectiveMap.click", function (event, args) {
     //$scope.clicked++;
     $log.info(args.model);
+    
+    if ($scope.$parent.rightSidebar === "undefined") {
+      $scope.$parent.rightSidebar = !$scope.$parent.rightSidebar;
+    }
 
     var leafEvent = args.leafletEvent;
 
@@ -237,7 +244,6 @@ function MapCtrl(
     //   lng: leafEvent.latlng.lng,
     //   message: "My Added Marker",
     // });
-
   });
 
   // $scope.$on("leafletDirectivePath.mouseover", function (event, path) {
@@ -250,6 +256,8 @@ function MapCtrl(
     $scope.position.lng = args.model.lng;
     $log.info($scope.position);
 
+    window.alert(args.model);
+
     //$scope.center.lat = args.model.lat;
     //$scope.center.lng = args.model.lng;
 
@@ -261,6 +269,18 @@ function MapCtrl(
                 $scope.position.lat = mainMarker1.lat;
                 $scope.position.lng = mainMarker1.lng;
             }); */
+}
+
+function ActivityDetailCtrl(activity) {
+  var vm = this;
+
+  vm.activity = activity;
+
+  vm.title = "Product Detail: " + vm.activity.message;
+
+  if (vm.product.tags) {
+    vm.product.tagList = vm.product.tags.toString();
+  }
 }
 
 function onEachFeature(feature, layer) {
@@ -315,6 +335,7 @@ function onEachFeature(feature, layer) {
   layer.on({
     click: function (e, arg) {
       console.log(layer.feature.properties.nom_reg);
+      
       //$scope.region = layer.feature.properties.nom_reg;
       // console.log("layer_test", e);
       //arg.layer.options.style.fillColor = "red";
@@ -327,4 +348,7 @@ function onEachFeature(feature, layer) {
   });
 }
 
-angular.module("imap").controller("MapCtrl", MapCtrl);
+angular
+  .module("imap")
+  .controller("MapCtrl", MapCtrl)
+  .controller("ActivityDetailCtrl", ActivityDetailCtrl);

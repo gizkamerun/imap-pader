@@ -12,13 +12,16 @@ function MainCtrl($scope, $rootScope) {
   this.descriptionText =
     "It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.";
  this.currentActivity = {};
+ this.rightSidebarIsOpen = false; 
+ this.detailsVM = {}; 
+ var vm = this; 
   $scope.mainData = {
     logs: "",
   };
 
   $scope.$on("eventSidebareUpdate", function (event, data) {
-      var vm = this; 
-      vm.currentActivity = data.model;
+      
+      vm.currentActivity = vm.detailsVM =  data.model;
     $scope.mainData.logs =
       $scope.mainData.logs +
       '\nMainController - receive EVENT "' +

@@ -256,7 +256,7 @@ function MapCtrl(
     $scope.position.lng = args.model.lng;
     $log.info($scope.position);
 
-    window.alert(args.model);
+    //window.alert(args.model);
 
     //$scope.center.lat = args.model.lat;
     //$scope.center.lng = args.model.lng;

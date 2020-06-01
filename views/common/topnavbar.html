@@ -1,24 +1,35 @@
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <span minimaliza-sidebar></span>
-            <form role="search" class="navbar-form-custom" method="post" action="">
-                <div class="form-group">
-                    <input type="text" placeholder="rechercher ..." class="form-control" ng-model="main.detailsVM.message" name="top-search" id="top-search">
-                </div>
-            </form>
-        </div>
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="">
-                    <i class="fa fa-sign-out"></i> Log out
-                </a>
-            </li>
-            <li>
-                <a ng-click="$root.rightSidebar = !$root.rightSidebar">
-                    <i class="fa fa-tasks"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="col-lg-6">
+        <img src="./img/logo.png" alt="" class="logo" style="width: 70%;height:auto">
+
+        <!-- <img src="./img/logo.png" class="logo-element" alt="logo" > -->
+    </div>
+
+
+    <div class="col-lg-6">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <span minimaliza-sidebar></span>
+                <form role="search" class="navbar-form-custom" method="post" action="">
+                    <div class="form-group">
+                        <input type="text" placeholder="rechercher ..." class="form-control" ng-model="main.detailsVM.message" name="top-search" id="top-search">
+                    </div>
+                </form>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- <li>
+                    <a href="">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li> -->
+                <li>
+                    <a ng-click="$root.rightSidebar = !$root.rightSidebar">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
 </div>

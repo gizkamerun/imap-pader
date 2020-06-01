@@ -1,4 +1,3 @@
-
 <div class="wrapper wrapper-content animated fadeInUp" ng-controller="MapCtrl as map">
     <div class="row">
         <div class="col-lg-12">
@@ -12,14 +11,14 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <leaflet event-broadcast="events"  paths="paths" lf-center="center" markers="markers" layers="layers" geojson="geojson" width="100%" height="550px" min-height="70%"></leaflet>
+            <leaflet event-broadcast="events" paths="paths" lf-center="center" markers="markers" layers="layers" geojson="geojson" width="100%" height="550px" min-height="70%"></leaflet>
             <!--<h1>Marker Events example</h1>
              <ul>
                 <li><strong ng-bind="eventDetected"></strong> event caught in listener.</li>
             </ul>
 
             <pre>{{map.lastEvent | json}}</pre> -->
-            <pre ng-model=main.detailsVM>{{map.currentlocation | json }}</pre>
+            <!--<pre ng-model=main.detailsVM>{{map.currentlocation | json }}</pre> -->
         </div>
     </div>
 </div>

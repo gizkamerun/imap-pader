@@ -96,7 +96,7 @@ function MapCtrl(
         toaster.pop({
             type: "info",
             title: title,
-            body: "notification box:" + msg,
+            body: "  " + msg,
             showCloseButton: true,
             timeout: 3000,
         });
@@ -119,7 +119,7 @@ function MapCtrl(
                 vm.currentActivity = args.model;
                 vm.currentlocation = args.model;
                 $log.debug(args.model);
-                $scope.demoToastr(args.model.message, event.name);
+                $scope.demoToastr(args.model.message, ' ');
                 $scope.sidebarDetailsOpen(event, args);
             }
         });
